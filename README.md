@@ -4,11 +4,66 @@
 
 Readify adalah platform perpustakaan digital pintar dengan sistem rekomendasi personal. Aplikasi ini menyediakan manajemen perpustakaan lengkap dengan tiga tingkat akses: **Admin**, **Staff**, dan **Member** (customer interface).
 
-## 👥 Tim Pengembang
+## 👥 Anggota Kelompok dan Tugas
 
-- **Anggota A (NIM: 22001)**: CRUD Buku + Dashboard Rekap Data
-- **Anggota B (NIM: 22002)**: CRUD Anggota Perpustakaan + CRUD Users
-- **Anggota C (NIM: 22003)**: CRUD Peminjaman & Pengembalian + Fitur Rekomendasi Personal
+### 1. Jhosua Armando Putra Panjaitan (NIM: 2305541067)
+
+Bertanggung jawab pada pengembangan modul inti sistem yang berkaitan langsung dengan operasional utama perpustakaan, meliputi:
+
+**CRUD Buku**
+- Tambah, ubah, hapus, dan lihat data buku
+- Pengelolaan stok buku
+- Integrasi kategori buku
+
+**CRUD Peminjaman & Pengembalian**
+- Pengajuan peminjaman oleh member
+- Persetujuan dan penolakan peminjaman oleh staff/admin
+- Proses pengembalian buku
+- Perhitungan denda keterlambatan
+
+**Kontribusi tambahan:**
+- Penyusunan alur proses peminjaman
+- Implementasi aturan bisnis (lama peminjaman dan denda)
+- Integrasi antar modul
+
+> 👉 **Alasan pembagian**: Modul ini merupakan fitur utama sistem sehingga membutuhkan integrasi antar tabel dan proses bisnis yang kompleks.
+
+### 2. Rafly Kusuma Putra (NIM: 2305541133)
+
+Bertanggung jawab pada pengelolaan data pengguna dan anggota perpustakaan, meliputi:
+
+**CRUD Anggota Perpustakaan**
+- Tambah, ubah, hapus, dan lihat data anggota
+- Pengelolaan status anggota (aktif / nonaktif)
+
+**CRUD Users**
+- Manajemen akun Admin dan Staff
+- Pengaturan role pengguna
+- Validasi data pengguna
+
+**Kontribusi tambahan:**
+- Penyesuaian struktur tabel user
+- Integrasi data user dengan data anggota
+
+> 👉 **Alasan pembagian**: Modul ini berfokus pada manajemen data pengguna yang mendukung sistem autentikasi dan kontrol akses.
+
+### 3. Chandra Bintang Lumban Siantar (NIM: 2105541037)
+
+Bertanggung jawab pada penyajian data dan fitur pendukung sistem, meliputi:
+
+**CRUD Dashboard Rekap Data**
+- Menampilkan statistik jumlah buku, anggota, dan peminjaman
+- Penyajian data dalam bentuk ringkasan sistem
+
+**CRUD Riwayat Peminjaman**
+- Menampilkan riwayat peminjaman anggota
+- Penyimpanan histori transaksi peminjaman
+
+**Kontribusi tambahan:**
+- Implementasi tampilan dashboard
+- Pengolahan data laporan peminjaman
+
+> 👉 **Alasan pembagian**: Modul ini berfokus pada visualisasi data dan informasi sebagai bahan monitoring sistem.
 
 ## ✨ Fitur Utama
 
