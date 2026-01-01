@@ -11,17 +11,20 @@ Readify adalah platform perpustakaan digital pintar dengan sistem rekomendasi pe
 Bertanggung jawab pada pengembangan modul inti sistem yang berkaitan langsung dengan operasional utama perpustakaan, meliputi:
 
 **CRUD Buku**
+
 - Tambah, ubah, hapus, dan lihat data buku
 - Pengelolaan stok buku
 - Integrasi kategori buku
 
 **CRUD Peminjaman & Pengembalian**
+
 - Pengajuan peminjaman oleh member
 - Persetujuan dan penolakan peminjaman oleh staff/admin
 - Proses pengembalian buku
 - Perhitungan denda keterlambatan
 
 **Kontribusi tambahan:**
+
 - Penyusunan alur proses peminjaman
 - Implementasi aturan bisnis (lama peminjaman dan denda)
 - Integrasi antar modul
@@ -33,15 +36,18 @@ Bertanggung jawab pada pengembangan modul inti sistem yang berkaitan langsung de
 Bertanggung jawab pada pengelolaan data pengguna dan anggota perpustakaan, meliputi:
 
 **CRUD Anggota Perpustakaan**
+
 - Tambah, ubah, hapus, dan lihat data anggota
 - Pengelolaan status anggota (aktif / nonaktif)
 
 **CRUD Users**
+
 - Manajemen akun Admin dan Staff
 - Pengaturan role pengguna
 - Validasi data pengguna
 
 **Kontribusi tambahan:**
+
 - Penyesuaian struktur tabel user
 - Integrasi data user dengan data anggota
 
@@ -52,14 +58,17 @@ Bertanggung jawab pada pengelolaan data pengguna dan anggota perpustakaan, melip
 Bertanggung jawab pada penyajian data dan fitur pendukung sistem, meliputi:
 
 **CRUD Dashboard Rekap Data**
+
 - Menampilkan statistik jumlah buku, anggota, dan peminjaman
 - Penyajian data dalam bentuk ringkasan sistem
 
 **CRUD Riwayat Peminjaman**
+
 - Menampilkan riwayat peminjaman anggota
 - Penyimpanan histori transaksi peminjaman
 
 **Kontribusi tambahan:**
+
 - Implementasi tampilan dashboard
 - Pengolahan data laporan peminjaman
 
@@ -258,16 +267,13 @@ Login Page:   http://localhost/Readify/pages/auth/login.php
 ```
 
 > 💡 **URL Auto-Detect**: Sistem otomatis mendeteksi URL (localhost atau hosting).  
-> Saat deploy ke hosting, URL akan otomatis berubah tanpa perlu edit kode!  
-> Lihat [DEPLOYMENT.md](DEPLOYMENT.md) untuk panduan upload ke hosting.
+> Saat deploy ke hosting, URL akan otomatis berubah tanpa perlu edit kode!
 
 ### Akun Login Default
 
-> 📄 **Akun default tersedia di file `CREDENTIALS.txt`**
-> 
-> File tersebut berisi 7 akun lengkap (2 Admin, 3 Staff, 2 Member) dengan email, password, dan informasi lengkap lainnya.
-> 
-> ⚠️ **JANGAN upload file `CREDENTIALS.txt` ke repository public!**
+> 📄 **File `CREDENTIALS.txt` akan diberikan oleh pemilik repository**
+>
+> File tersebut berisi 7 akun lengkap (2 Admin, 3 Staff, 2 Member) dengan email, password, dan informasi lengkap lainnya untuk keperluan testing.
 
 ## 📝 Detail Fitur
 
@@ -342,11 +348,11 @@ Login Page:   http://localhost/Readify/pages/auth/login.php
 
 - **Filter**: Dropdown tahun dan bulan dari data aktual
 - **Kartu Statistik**:
-  - Total Buku: COUNT(*)
+  - Total Buku: COUNT(\*)
   - Tepat waktu: DATEDIFF(return_date, due_date) <= 0
   - Terlambat: DATEDIFF(return_date, due_date) > 0
   - Total Denda: SUM(COALESCE(fine_amount, 0))
-- **Persentase Akurasi**: (tepat_waktu / total_buku) * 100
+- **Persentase Akurasi**: (tepat_waktu / total_buku) \* 100
 - **Gradient Thumbnails**: Cover buku berkode warna
 - **Hanya Status Returned**: Menampilkan peminjaman selesai
 
@@ -372,7 +378,7 @@ Login Page:   http://localhost/Readify/pages/auth/login.php
 
 #### Perhitungan Denda
 
-- **Rumus**: DATEDIFF(CURDATE(), due_date) * FINE_PER_DAY
+- **Rumus**: DATEDIFF(CURDATE(), due_date) \* FINE_PER_DAY
 - **Konstanta**:
   - `FINE_PER_DAY = 1000` (Rp 1.000)
   - `DEFAULT_LOAN_DAYS = 14` (2 minggu)
