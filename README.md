@@ -130,7 +130,8 @@ Readify/
 │   ├── config.php            # Site configuration & helpers
 │   └── database.php          # PDO Database class
 ├── database/
-│   └── schema.sql            # Complete database schema (56 books)
+│   ├── schema.sql            # Database schema only
+│   └── database_full.sql     # Full database with sample data
 ├── includes/
 │   ├── header.php            # HTML head & meta tags
 │   ├── sidebar.php           # Admin/Staff sidebar navigation
@@ -152,7 +153,9 @@ Readify/
 │   │   └── delete.php        # Delete member handler
 │   ├── loans/
 │   │   ├── index.php         # Loan approval dashboard (staff)
-│   │   └── action.php        # Approve/Reject/Return handler
+│   │   ├── create.php        # Create new loan
+│   │   ├── return.php        # Return book handler
+│   │   └── delete.php        # Delete loan handler
 │   ├── users/
 │   │   ├── index.php         # User management (admin only)
 │   │   ├── create.php        # Add user
@@ -164,9 +167,11 @@ Readify/
 │   │   ├── borrow.php        # Loan request confirmation
 │   │   ├── my-loans.php      # Active loans with status
 │   │   ├── history.php       # Borrowing history with filters
-│   │   └── recommendations.php # Personal recommendations
+│   │   ├── recommendations.php # Personal recommendations
+│   │   └── request-return.php  # Request book return
 │   ├── dashboard.php         # Admin/Staff dashboard
-│   └── recommendations.php   # (Moved to member interface)
+│   └── recommendations.php   # Admin recommendations view
+├── CREDENTIALS.txt           # Login credentials (DO NOT UPLOAD!)
 ├── landing.php               # Landing page
 ├── index.php                 # Entry point (redirects to landing)
 └── README.md                 # This file
@@ -258,23 +263,11 @@ Login Page:   http://localhost/Readify/pages/auth/login.php
 
 ### Default Login Accounts
 
-**📄 Login credentials tersedia di file `CREDENTIALS.txt`**
-
-File ini berisi **7 akun lengkap** dari database:
-- **2 Admin accounts** (full system access)
-- **3 Staff accounts** (library operations)
-- **2 Member accounts** (customer interface)
-
-Setiap akun dilengkapi dengan:
-- Email & Password
-- Nama lengkap & Phone number
-- Role & Status
-
-> ⚠️ **SECURITY WARNING**:  
-> - File `CREDENTIALS.txt` berisi informasi sensitif untuk testing
-> - **JANGAN upload** ke GitHub atau repository public
-> - **WAJIB tambahkan** `CREDENTIALS.txt` ke `.gitignore`
-> - Ganti password setelah deployment ke production
+> 📄 **Akun default tersedia di file `CREDENTIALS.txt`**
+> 
+> File tersebut berisi 7 akun lengkap (2 Admin, 3 Staff, 2 Member) dengan email, password, dan informasi lengkap lainnya.
+> 
+> ⚠️ **JANGAN upload file `CREDENTIALS.txt` ke repository public!**
 
 ## 📝 Fitur Detail
 
