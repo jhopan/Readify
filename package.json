@@ -1,0 +1,18 @@
+{
+  "name": "readify",
+  "version": "1.0.0",
+  "description": "A Smart Digital Library Platform With Personalized Reading Experience - PHP Version",
+  "keywords": [
+    "library",
+    "php",
+    "mysql",
+    "perpustakaan",
+    "digital"
+  ],
+  "author": "Tim Readify",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}
