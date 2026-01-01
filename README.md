@@ -203,27 +203,23 @@ Login Page:   http://localhost/Readify/pages/auth/login.php
 
 ### Default Login Accounts
 
-```
-1. ADMIN
-   Email:    admin@readify.com
-   Password: admin123
-   Role:     admin (full system access)
+**📄 Login credentials tersedia di file `CREDENTIALS.txt`**
 
-2. JHOPAN (Admin)
-   Email:    jhopan@readify.com
-   Password: jhopan
-   Role:     admin
+File ini berisi **7 akun lengkap** dari database:
+- **2 Admin accounts** (full system access)
+- **3 Staff accounts** (library operations)
+- **2 Member accounts** (customer interface)
 
-3. RAFLY (Member/Customer)
-   Email:    rafly@readify.com
-   Password: rafly
-   Role:     member (customer interface)
+Setiap akun dilengkapi dengan:
+- Email & Password
+- Nama lengkap & Phone number
+- Role & Status
 
-4. STAFF
-   Email:    staff@readify.com
-   Password: admin123
-   Role:     staff (library operations)
-```
+> ⚠️ **SECURITY WARNING**:  
+> - File `CREDENTIALS.txt` berisi informasi sensitif untuk testing
+> - **JANGAN upload** ke GitHub atau repository public
+> - **WAJIB tambahkan** `CREDENTIALS.txt` ke `.gitignore`
+> - Ganti password setelah deployment ke production
 
 ## 📝 Fitur Detail
 

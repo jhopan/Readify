@@ -27,5 +27,9 @@ dist-ssr
 .env
 .env.local
 .env.production
+
+# Sensitive credentials
+CREDENTIALS.txt
+
 # Ignore all .md files except README.md
 docs/*.md
