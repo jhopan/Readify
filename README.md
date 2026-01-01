@@ -1,8 +1,8 @@
-# Readify - Smart Digital Library Platform
+# Readify - Platform Perpustakaan Digital Pintar
 
-## 📚 Deskripsi Project
+## 📚 Deskripsi Proyek
 
-Readify adalah platform perpustakaan digital pintar dengan sistem rekomendasi personal. Aplikasi ini menyediakan manajemen perpustakaan lengkap dengan tiga tingkat akses: **Admin**, **Staff**, dan **Member** (customer interface).
+Readify adalah platform perpustakaan digital pintar dengan sistem rekomendasi personal. Aplikasi ini menyediakan manajemen perpustakaan lengkap dengan tiga tingkat akses: **Admin**, **Staff**, dan **Member** (antarmuka pelanggan).
 
 ## 👥 Anggota Kelompok dan Tugas
 
@@ -67,54 +67,54 @@ Bertanggung jawab pada penyajian data dan fitur pendukung sistem, meliputi:
 
 ## ✨ Fitur Utama
 
-1. **Three-Tier Authentication**:
+1. **Autentikasi Tiga Tingkat**:
 
-   - **Admin** - Full system access (CRUD users, books, members, loans)
-   - **Staff** - Library operations (approve/reject loans, manage returns, inventory)
-   - **Member** - Customer interface (browse books, request loans, view history)
+   - **Admin** - Akses penuh sistem (CRUD users, books, members, loans)
+   - **Staff** - Operasional perpustakaan (approve/reject loans, manage returns, inventory)
+   - **Member** - Antarmuka pelanggan (browse books, request loans, view history)
 
-2. **Member Interface**:
+2. **Antarmuka Member**:
 
-   - Auto-registration system untuk member baru
-   - Katalog buku dengan gradient cover (8 color schemes)
-   - Search & filter by category (10 kategori)
-   - Request peminjaman dengan status pending
+   - Sistem pendaftaran otomatis untuk member baru
+   - Katalog buku dengan gradient cover (8 skema warna)
+   - Pencarian & filter berdasarkan kategori (10 kategori)
+   - Pengajuan peminjaman dengan status pending
 
-3. **Loan Approval System**:
+3. **Sistem Persetujuan Peminjaman**:
 
-   - Status workflow: Pending → Approved/Rejected → Returned
-   - Staff approval dashboard dengan 4 tabs
-   - Fine calculation otomatis (Rp 1,000/hari)
-   - Stock management otomatis
+   - Alur status: Pending → Approved/Rejected → Returned
+   - Dashboard persetujuan staff dengan 4 tab
+   - Perhitungan denda otomatis (Rp 1.000/hari)
+   - Manajemen stok otomatis
 
-4. **Smart Recommendations**:
+4. **Rekomendasi Pintar**:
 
-   - Algoritma berbasis top 2 kategori yang sering dipinjam
+   - Algoritma berbasis 2 kategori teratas yang sering dipinjam
    - Personalisasi per member
-   - Badge "⭐ Top Pick" untuk rekomendasi terbaik
-   - Exclude buku yang sedang dipinjam
+   - Badge "⭐ Pilihan Terbaik" untuk rekomendasi terbaik
+   - Tidak termasuk buku yang sedang dipinjam
 
-5. **History & Analytics**:
+5. **Riwayat & Analitik**:
 
-   - Filter by year/month
-   - Statistics: Total books, On-time, Late, Total fine
-   - Accuracy percentage
-   - Visual cards dengan gradient thumbnails
+   - Filter berdasarkan tahun/bulan
+   - Statistik: Total buku, Tepat waktu, Terlambat, Total denda
+   - Persentase akurasi
+   - Kartu visual dengan gradient thumbnails
 
-6. **Dashboard Visualization**:
-   - Real-time statistics
-   - Book availability counter
-   - Active loans tracking
-   - Member activity monitoring
+6. **Visualisasi Dashboard**:
+   - Statistik real-time
+   - Penghitung ketersediaan buku
+   - Pelacakan peminjaman aktif
+   - Monitoring aktivitas member
 
-## 🛠️ Tech Stack
+## 🛠️ Teknologi yang Digunakan
 
 - **Frontend**: HTML5, CSS3 (Custom CSS Variables), JavaScript (Vanilla)
 - **Backend**: PHP 8.1+ (Native Sessions, PDO)
 - **Database**: MySQL 8.0+
-- **Authentication**: Role-based access control (admin/staff/member)
-- **Password Security**: bcrypt (password_hash/password_verify)
-- **Security**: Prepared statements, SQL injection protection
+- **Autentikasi**: Role-based access control (admin/staff/member)
+- **Keamanan Password**: bcrypt (password_hash/password_verify)
+- **Keamanan**: Prepared statements, proteksi SQL injection
 - **UI**: Gradient SVG book covers, responsive card layouts
 
 ## 📁 Struktur Folder
@@ -179,7 +179,7 @@ Readify/
 
 ## 🚀 Cara Menjalankan
 
-### Prerequisites
+### Prasyarat
 
 - **PHP 8.1** atau lebih baru
 - **MySQL 8.0** atau lebih baru
@@ -261,7 +261,7 @@ Login Page:   http://localhost/Readify/pages/auth/login.php
 > Saat deploy ke hosting, URL akan otomatis berubah tanpa perlu edit kode!  
 > Lihat [DEPLOYMENT.md](DEPLOYMENT.md) untuk panduan upload ke hosting.
 
-### Default Login Accounts
+### Akun Login Default
 
 > 📄 **Akun default tersedia di file `CREDENTIALS.txt`**
 > 
@@ -269,28 +269,28 @@ Login Page:   http://localhost/Readify/pages/auth/login.php
 > 
 > ⚠️ **JANGAN upload file `CREDENTIALS.txt` ke repository public!**
 
-## 📝 Fitur Detail
+## 📝 Detail Fitur
 
-### 🔐 Authentication & Authorization
+### 🔐 Autentikasi & Otorisasi
 
-- **Three-tier role system**: admin, staff, member
-- **Role-based redirects**:
+- **Sistem role tiga tingkat**: admin, staff, member
+- **Redirect berbasis role**:
   - Admin/Staff → `/pages/dashboard.php`
   - Member → `/pages/member/dashboard.php`
-- **Auto-registration**: Member record auto-created on first login
-- **Password hashing**: bcrypt with `password_hash()`
-- **Session management**: Secure PHP sessions
-- **Member ID generation**: M001, M002, M003, etc.
+- **Pendaftaran otomatis**: Record member dibuat otomatis saat login pertama
+- **Hashing password**: bcrypt dengan `password_hash()`
+- **Manajemen session**: Secure PHP sessions
+- **Generasi Member ID**: M001, M002, M003, dll.
 
-### 📚 Book Management (Admin/Staff)
+### 📚 Manajemen Buku (Admin/Staff)
 
-- **CRUD Operations**: Create, Read, Update, Delete books
-- **Search**: Title, Author, ISBN with prepared statements
-- **Category Filter**: 10 categories with explicit IDs
-- **Stock Management**: Auto-update on loan/return
-- **Book Details**: Title, Author, Publisher, Year, Pages, Description
-- **ISBN System**: Unique patterns per category
-- **Category Mapping**:
+- **Operasi CRUD**: Create, Read, Update, Delete buku
+- **Pencarian**: Judul, Penulis, ISBN dengan prepared statements
+- **Filter Kategori**: 10 kategori dengan ID eksplisit
+- **Manajemen Stok**: Update otomatis saat pinjam/kembali
+- **Detail Buku**: Judul, Penulis, Penerbit, Tahun, Halaman, Deskripsi
+- **Sistem ISBN**: Pola unik per kategori
+- **Pemetaan Kategori**:
   - 1 = Fiksi (5 books)
   - 2 = Non-Fiksi (3 books)
   - 3 = Sains (5 books)
@@ -302,106 +302,106 @@ Login Page:   http://localhost/Readify/pages/auth/login.php
   - 9 = Bisnis (7 books)
   - 10 = Kesehatan (5 books)
 
-### 👥 Member Management (Admin/Staff)
+### 👥 Manajemen Member (Admin/Staff)
 
-- **CRUD Anggota**: Add, Edit, View members
-- **Member Status**: Active/Inactive
-- **Auto-link to Users**: Connect member to user account via email
-- **Member Statistics**: Total books borrowed, on-time rate
-- **Join Date Tracking**: Auto-set on creation
+- **CRUD Anggota**: Tambah, Ubah, Lihat member
+- **Status Member**: Aktif/Nonaktif
+- **Link otomatis ke Users**: Hubungkan member ke akun user via email
+- **Statistik Member**: Total buku dipinjam, tingkat ketepatan waktu
+- **Pelacakan Tanggal Bergabung**: Diatur otomatis saat dibuat
 
-### 📖 Member Interface (Customer)
+### 📖 Antarmuka Member (Pelanggan)
 
 #### Dashboard
 
-- **Auto-registration**: New members auto-created with M00X ID
-- **Statistics Cards**: Available books, Active loans, Books borrowed
-- **Quick Actions**: Browse catalog, View loans, Check history
+- **Pendaftaran otomatis**: Member baru dibuat otomatis dengan ID M00X
+- **Kartu Statistik**: Buku tersedia, Peminjaman aktif, Buku dipinjam
+- **Aksi Cepat**: Jelajahi katalog, Lihat peminjaman, Cek riwayat
 
-#### Book Catalog
+#### Katalog Buku
 
-- **Gradient Covers**: 8 color schemes (SVG-based, no external images)
-- **Search & Filter**: By title, author, ISBN, and category
-- **Book Cards**: Title, Author, Publisher, Year, Stock
-- **Borrow Button**: Direct loan request
-- **SQL Injection Protection**: Prepared statements with parameter binding
+- **Gradient Covers**: 8 skema warna (berbasis SVG, tanpa gambar eksternal)
+- **Pencarian & Filter**: Berdasarkan judul, penulis, ISBN, dan kategori
+- **Kartu Buku**: Judul, Penulis, Penerbit, Tahun, Stok
+- **Tombol Pinjam**: Pengajuan peminjaman langsung
+- **Proteksi SQL Injection**: Prepared statements dengan parameter binding
 
-#### My Loans
+#### Peminjaman Saya
 
-- **Status Filtering**: All, Pending, Approved, Returned
-- **Status Cards**: Visual indicators with colors
-  - Pending: Yellow (#f59e0b)
-  - Approved: Blue (#3b82f6)
-  - Returned: Green (#10b981)
-  - Rejected: Red (#ef4444)
-- **Overdue Warnings**: Red alert for late returns
-- **Fine Display**: COALESCE for NULL-safe calculations
-- **Due Date Tracking**: Days remaining/overdue
+- **Filter Status**: Semua, Pending, Approved, Returned
+- **Kartu Status**: Indikator visual dengan warna
+  - Pending: Kuning (#f59e0b)
+  - Approved: Biru (#3b82f6)
+  - Returned: Hijau (#10b981)
+  - Rejected: Merah (#ef4444)
+- **Peringatan Terlambat**: Alert merah untuk pengembalian terlambat
+- **Tampilan Denda**: COALESCE untuk kalkulasi NULL-safe
+- **Pelacakan Tanggal Jatuh Tempo**: Hari tersisa/terlambat
 
-#### History & Analytics
+#### Riwayat & Analitik
 
-- **Filters**: Year and Month dropdowns from actual data
-- **Statistics Cards**:
-  - Total Books: COUNT(\*)
-  - On-time: DATEDIFF(return_date, due_date) <= 0
-  - Late: DATEDIFF(return_date, due_date) > 0
-  - Total Fine: SUM(COALESCE(fine_amount, 0))
-- **Accuracy Percentage**: (on_time / total_books) \* 100
-- **Gradient Thumbnails**: Color-coded book covers
-- **Only Returned Status**: Shows completed loans
+- **Filter**: Dropdown tahun dan bulan dari data aktual
+- **Kartu Statistik**:
+  - Total Buku: COUNT(*)
+  - Tepat waktu: DATEDIFF(return_date, due_date) <= 0
+  - Terlambat: DATEDIFF(return_date, due_date) > 0
+  - Total Denda: SUM(COALESCE(fine_amount, 0))
+- **Persentase Akurasi**: (tepat_waktu / total_buku) * 100
+- **Gradient Thumbnails**: Cover buku berkode warna
+- **Hanya Status Returned**: Menampilkan peminjaman selesai
 
-#### Smart Recommendations
+#### Rekomendasi Pintar
 
-- **Algorithm**: Analyzes top 2 most borrowed categories
-- **Personalization**: Based on individual user's reading history
-- **Exclusion Logic**: Removes currently borrowed books
-- **Top Pick Badge**: ⭐ for first 4 recommendations
-- **Fallback**: Random books if no history exists
-- **Statistics**: Shows total recommendations, available books, active loans
+- **Algoritma**: Menganalisis 2 kategori teratas yang paling sering dipinjam
+- **Personalisasi**: Berdasarkan riwayat baca individual user
+- **Logika Pengecualian**: Menghapus buku yang sedang dipinjam
+- **Badge Pilihan Terbaik**: ⭐ untuk 4 rekomendasi pertama
+- **Fallback**: Buku acak jika tidak ada riwayat
+- **Statistik**: Menampilkan total rekomendasi, buku tersedia, peminjaman aktif
 
-### 📋 Loan Management (Staff)
+### 📋 Manajemen Peminjaman (Staff)
 
-#### Approval Dashboard
+#### Dashboard Persetujuan
 
-- **4 Status Tabs**: Pending, Approved, Returned, Rejected
-- **Tab Counters**: Real-time count per status
-- **Action Buttons**:
-  - **Approve**: Sets status='approved', stock-1, approved_by, approved_date
-  - **Reject**: Sets status='rejected', requires notes (modal)
-  - **Return**: Sets status='returned', stock+1, calculates fine
+- **4 Tab Status**: Pending, Approved, Returned, Rejected
+- **Penghitung Tab**: Jumlah real-time per status
+- **Tombol Aksi**:
+  - **Approve**: Set status='approved', stok-1, approved_by, approved_date
+  - **Reject**: Set status='rejected', memerlukan catatan (modal)
+  - **Return**: Set status='returned', stok+1, hitung denda
 
-#### Fine Calculation
+#### Perhitungan Denda
 
-- **Formula**: DATEDIFF(CURDATE(), due_date) \* FINE_PER_DAY
-- **Constants**:
-  - `FINE_PER_DAY = 1000` (Rp 1,000)
-  - `DEFAULT_LOAN_DAYS = 14` (2 weeks)
-- **Auto-calculation**: On return if overdue
-- **NULL-safe**: Uses COALESCE(fine_amount, 0)
+- **Rumus**: DATEDIFF(CURDATE(), due_date) * FINE_PER_DAY
+- **Konstanta**:
+  - `FINE_PER_DAY = 1000` (Rp 1.000)
+  - `DEFAULT_LOAN_DAYS = 14` (2 minggu)
+- **Kalkulasi otomatis**: Saat pengembalian jika terlambat
+- **NULL-safe**: Menggunakan COALESCE(fine_amount, 0)
 
-#### Loan Workflow
+#### Alur Peminjaman
 
 ```
-1. Member requests → status='pending'
-2. Staff reviews in loans/index.php
-3. Approve → status='approved', stock-1, log approved_by
-4. Reject → status='rejected', save notes
-5. Return → status='returned', stock+1, calculate fine if late
+1. Member mengajukan → status='pending'
+2. Staff meninjau di loans/index.php
+3. Approve → status='approved', stok-1, log approved_by
+4. Reject → status='rejected', simpan catatan
+5. Return → status='returned', stok+1, hitung denda jika terlambat
 ```
 
-### 👤 User Management (Admin Only)
+### 👤 Manajemen User (Khusus Admin)
 
-- **CRUD Users**: Create, Edit, Delete system users
-- **Role Assignment**: admin, staff, member
-- **Password Management**: Hash passwords on create/update
-- **Access Control**: Only admin can access /pages/users/
+- **CRUD Users**: Create, Edit, Delete user sistem
+- **Penugasan Role**: admin, staff, member
+- **Manajemen Password**: Hash password saat create/update
+- **Kontrol Akses**: Hanya admin yang dapat akses /pages/users/
 
 ### 📊 Dashboard (Admin/Staff)
 
-- **Book Statistics**: Total books, available, borrowed
-- **Member Statistics**: Total members, active members
-- **Loan Statistics**: Active loans, pending approvals, overdue loans
-- **Quick Access**: Direct links to management pages
+- **Statistik Buku**: Total buku, tersedia, dipinjam
+- **Statistik Member**: Total member, member aktif
+- **Statistik Peminjaman**: Peminjaman aktif, persetujuan pending, pinjaman terlambat
+- **Akses Cepat**: Link langsung ke halaman manajemen
 
 ## 📊 Database Schema
 
@@ -500,14 +500,14 @@ Database `readify` dengan 7 tables:
 - created_at TIMESTAMP
 ```
 
-## 📈 Data Statistics
+## 📈 Statistik Data
 
-- **Total Books**: 56 books across 10 categories
-- **Total Categories**: 10 with explicit IDs
-- **Test Users**: 4 (1 admin, 1 jhopan admin, 1 member, 1 staff)
-- **Sample Members**: 3 pre-populated
-- **Sample Loans**: 2 for testing
-- **Book Distribution**:
+- **Total Buku**: 56 buku di 10 kategori
+- **Total Kategori**: 10 dengan ID eksplisit
+- **User Testing**: 4 (1 admin, 1 jhopan admin, 1 member, 1 staff)
+- **Sample Member**: 3 data awal
+- **Sample Peminjaman**: 2 untuk testing
+- **Distribusi Buku**:
   - Fiksi: 5 books (To Kill a Mockingbird, 1984, Harry Potter, etc.)
   - Non-Fiksi: 3 books (Into the Wild, The Tipping Point, Educated)
   - Sains: 5 books (Hawking, Sagan, Dawkins, Tyson, Darwin)
@@ -519,54 +519,54 @@ Database `readify` dengan 7 tables:
   - Bisnis: 7 books (Atomic Habits, Start With Why, 7 Habits, etc.)
   - Kesehatan: 5 books (Why We Sleep, The Body, How Not to Die, Brain Rules, Breath)
 
-## 🔒 Security Features
+## 🔒 Fitur Keamanan
 
-- **Password Hashing**: bcrypt via `password_hash()` and `password_verify()`
-- **Prepared Statements**: All queries use PDO prepared statements with parameter binding
-- **SQL Injection Protection**: No string concatenation in queries
-- **Role-Based Access Control**: Three-tier authorization (admin/staff/member)
-- **Session Security**: PHP native sessions with secure configuration
-- **Input Sanitization**: `htmlspecialchars()` for output, prepared statements for input
-- **Foreign Key Constraints**: Database-level referential integrity
-- **CSRF Protection**: Session-based validation
-- **NULL-Safe Operations**: COALESCE() for database queries
-- **Password Validation**: Minimum requirements enforced
+- **Hashing Password**: bcrypt via `password_hash()` dan `password_verify()`
+- **Prepared Statements**: Semua query menggunakan PDO prepared statements dengan parameter binding
+- **Proteksi SQL Injection**: Tidak ada konkatenasi string dalam query
+- **Role-Based Access Control**: Otorisasi tiga tingkat (admin/staff/member)
+- **Keamanan Session**: PHP native sessions dengan konfigurasi aman
+- **Sanitasi Input**: `htmlspecialchars()` untuk output, prepared statements untuk input
+- **Foreign Key Constraints**: Integritas referensial di level database
+- **Proteksi CSRF**: Validasi berbasis session
+- **Operasi NULL-Safe**: COALESCE() untuk query database
+- **Validasi Password**: Persyaratan minimum diterapkan
 
-## 🎨 UI/UX Features
+## 🎨 Fitur UI/UX
 
-### Design System
+### Sistem Desain
 
-- **CSS Variables**: Centralized color palette and spacing
-- **Responsive Layout**: Mobile-friendly card grids
-- **Gradient Covers**: 8 color pairs for book thumbnails
-- **Status Colors**:
+- **CSS Variables**: Palet warna dan spacing terpusat
+- **Layout Responsif**: Grid kartu ramah mobile
+- **Gradient Covers**: 8 pasang warna untuk thumbnail buku
+- **Warna Status**:
   - Primary: #3b82f6 (Blue)
   - Success: #10b981 (Green)
   - Warning: #f59e0b (Yellow/Orange)
   - Danger: #ef4444 (Red)
   - Info: #06b6d4 (Cyan)
 
-### Components
+### Komponen
 
-- **Status Badges**: Color-coded (success/warning/danger/info)
-- **Cards**: Hover effects with shadow transitions
-- **Modal Dialogs**: For confirmations and forms
-- **Statistics Cards**: Grid layout with icons
-- **Navigation**: Sidebar with active state indicators
-- **Alerts**: Flash messages with auto-dismiss
-- **Empty States**: Friendly messages with illustrations
+- **Status Badges**: Berkode warna (success/warning/danger/info)
+- **Cards**: Efek hover dengan transisi shadow
+- **Modal Dialogs**: Untuk konfirmasi dan form
+- **Statistics Cards**: Layout grid dengan icon
+- **Navigation**: Sidebar dengan indikator status aktif
+- **Alerts**: Pesan flash dengan auto-dismiss
+- **Empty States**: Pesan ramah dengan ilustrasi
 
-### Accessibility
+### Aksesibilitas
 
-- **Semantic HTML**: Proper heading hierarchy
-- **SVG Icons**: Scalable and crisp on any display
-- **Readable Fonts**: System font stack
-- **Color Contrast**: WCAG compliant
-- **Focus States**: Keyboard navigation support
+- **Semantic HTML**: Hierarki heading yang proper
+- **SVG Icons**: Dapat diperbesar dan tajam di layar apapun
+- **Font yang Mudah Dibaca**: System font stack
+- **Kontras Warna**: Sesuai WCAG
+- **Focus States**: Dukungan navigasi keyboard
 
-## 🚨 Error Handling
+## 🚨 Penanganan Error
 
-### Common Issues & Solutions
+### Masalah Umum & Solusi
 
 **1. "Column 'user_id' not found"**
 
@@ -607,76 +607,76 @@ $db->query("INSERT INTO ...", $params);
 // NOT: $db->execute("INSERT INTO ...", $params);
 ```
 
-## 📝 Best Practices Implemented
+## 📝 Best Practices yang Diterapkan
 
-### Code Quality
+### Kualitas Kode
 
-- ✅ **Separation of Concerns**: Config, Includes, Pages separated
-- ✅ **DRY Principle**: Reusable helper functions in config.php
-- ✅ **Consistent Naming**: snake_case for DB, camelCase for PHP
-- ✅ **Error Handling**: Try-catch blocks for database operations
-- ✅ **Code Comments**: Clear explanations for complex logic
+- ✅ **Separation of Concerns**: Config, Includes, Pages terpisah
+- ✅ **DRY Principle**: Fungsi helper yang dapat digunakan kembali di config.php
+- ✅ **Consistent Naming**: snake_case untuk DB, camelCase untuk PHP
+- ✅ **Error Handling**: Blok try-catch untuk operasi database
+- ✅ **Code Comments**: Penjelasan jelas untuk logika kompleks
 
-### Database Design
+### Desain Database
 
-- ✅ **Normalization**: Proper 3NF structure
-- ✅ **Indexes**: On frequently queried columns
-- ✅ **Foreign Keys**: Enforce referential integrity
-- ✅ **Timestamps**: created_at, updated_at tracking
-- ✅ **Explicit IDs**: Category IDs 1-10 for consistency
+- ✅ **Normalisasi**: Struktur 3NF yang proper
+- ✅ **Indexes**: Pada kolom yang sering di-query
+- ✅ **Foreign Keys**: Menerapkan integritas referensial
+- ✅ **Timestamps**: Tracking created_at, updated_at
+- ✅ **ID Eksplisit**: ID Kategori 1-10 untuk konsistensi
 
-### Security
+### Keamanan
 
-- ✅ **No Plain Passwords**: All bcrypt hashed
-- ✅ **Prepared Statements**: 100% of queries
+- ✅ **Tidak Ada Plain Password**: Semua di-hash bcrypt
+- ✅ **Prepared Statements**: 100% dari query
 - ✅ **Session Management**: Secure PHP sessions
-- ✅ **XSS Prevention**: htmlspecialchars() on output
+- ✅ **Pencegahan XSS**: htmlspecialchars() pada output
 - ✅ **Access Control**: requireLogin(), requireAdmin(), requireStaff()
 
-## 🔄 Workflow Examples
+## 🔄 Contoh Alur Kerja
 
-### Member Borrowing Flow
-
-```
-1. Member logs in → Auto-creates member record if needed
-2. Browse books.php → Search/filter by category
-3. Click "Pinjam Buku" → Confirmation page (borrow.php)
-4. Confirm → INSERT into loans with status='pending'
-5. Staff views loans/index.php → Pending tab
-6. Staff clicks "Approve" → status='approved', stock-1, log approver
-7. Member views my-loans.php → See approved status
-8. Staff processes return → status='returned', stock+1, calculate fine
-9. Member views history.php → See completed loan with fine (if any)
-```
-
-### Recommendation Algorithm Flow
+### Alur Peminjaman Member
 
 ```
-1. User visits recommendations.php
-2. System queries: SELECT top 2 categories by borrow_count
-3. If found: Get 12 random books from those categories
-4. Exclude: Books currently borrowed by user
-5. If < 12 books: Add random books from other categories
-6. Display with "⭐ Top Pick" badge for first 4
-7. Show statistics: Total recommended, Available, Active loans
+1. Member login → Membuat record member otomatis jika diperlukan
+2. Browse books.php → Cari/filter berdasarkan kategori
+3. Klik "Pinjam Buku" → Halaman konfirmasi (borrow.php)
+4. Konfirmasi → INSERT ke loans dengan status='pending'
+5. Staff melihat loans/index.php → Tab Pending
+6. Staff klik "Approve" → status='approved', stok-1, log approver
+7. Member melihat my-loans.php → Lihat status approved
+8. Staff proses pengembalian → status='returned', stok+1, hitung denda
+9. Member melihat history.php → Lihat peminjaman selesai dengan denda (jika ada)
 ```
 
-## 📄 License
+### Alur Algoritma Rekomendasi
 
-MIT License - Free to use for educational purposes
+```
+1. User mengunjungi recommendations.php
+2. Sistem query: SELECT 2 kategori teratas berdasarkan borrow_count
+3. Jika ditemukan: Ambil 12 buku acak dari kategori tersebut
+4. Tidak termasuk: Buku yang sedang dipinjam user
+5. Jika < 12 buku: Tambahkan buku acak dari kategori lain
+6. Tampilkan dengan badge "⭐ Pilihan Terbaik" untuk 4 pertama
+7. Tampilkan statistik: Total rekomendasi, Tersedia, Peminjaman aktif
+```
+
+## 📄 Lisensi
+
+MIT License - Gratis untuk digunakan untuk tujuan edukasi
 
 ## 🙏 Acknowledgments
 
-- **Icons**: SVG icons (no external dependencies)
-- **Colors**: Tailwind-inspired color palette
-- **Typography**: System font stack for best performance
-- **PHP**: Native features (no frameworks required)
-- **Database**: MySQL 8.0+ with InnoDB engine
+- **Icons**: SVG icons (tanpa dependensi eksternal)
+- **Colors**: Palet warna terinspirasi Tailwind
+- **Typography**: System font stack untuk performa terbaik
+- **PHP**: Fitur native (tanpa framework)
+- **Database**: MySQL 8.0+ dengan InnoDB engine
 
-## 📞 Support
+## 📞 Dukungan
 
 Untuk pertanyaan atau issues, silakan hubungi tim pengembang atau buat issue di repository.
 
 ---
 
-**Built with ❤️ for UAS Pronet Ganjil 2025/2026**
+**Dibuat dengan ❤️ untuk UAS Pronet Ganjil 2025/2026**
