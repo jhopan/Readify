@@ -32,8 +32,8 @@ $myActiveLoans = 0;
 $myOverdueLoans = 0;
 
 if ($member) {
-    $myActiveLoans = $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE member_id = ? AND status = 'approved'", [$member['id']])['count'];
-    $myOverdueLoans = $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE member_id = ? AND status = 'approved' AND due_date < CURDATE()", [$member['id']])['count'];
+    $myActiveLoans = $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE member_id = ? AND status = 'approved' AND return_date IS NULL", [$member['id']])['count'];
+    $myOverdueLoans = $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE member_id = ? AND status = 'approved' AND return_date IS NULL AND due_date < CURDATE()", [$member['id']])['count'];
 }
 
 // Get my active loans
@@ -43,7 +43,7 @@ if ($member) {
         SELECT l.*, b.title as book_title, b.author, b.isbn
         FROM loans l
         JOIN books b ON l.book_id = b.id
-        WHERE l.member_id = ? AND l.status = 'active'
+        WHERE l.member_id = ? AND l.status = 'approved' AND l.return_date IS NULL
         ORDER BY l.due_date ASC
         LIMIT 5
     ", [$member['id']]);

@@ -138,7 +138,7 @@ $params = [];
 if ($status !== 'all') {
     if ($status == 'overdue') {
         // Filter pinjaman terlambat (approved tapi sudah melewati due_date)
-        $where[] = "l.status = 'approved' AND l.due_date < CURDATE()";
+        $where[] = "l.status = 'approved' AND l.return_date IS NULL AND l.due_date < CURDATE()";
     } else {
         $where[] = "l.status = ?";
         $params[] = $status;
@@ -172,8 +172,8 @@ $loans = $db->fetchAll("
 $stats = [
     'all' => $db->fetchOne("SELECT COUNT(*) as count FROM loans")['count'],
     'pending' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE status = 'pending'")['count'],
-    'approved' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE status = 'approved'")['count'],
-    'overdue' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE status = 'approved' AND due_date < CURDATE()")['count'],
+    'approved' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE status = 'approved' AND return_date IS NULL")['count'],
+    'overdue' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE status = 'approved' AND return_date IS NULL AND due_date < CURDATE()")['count'],
     'return_requested' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE status = 'return_requested'")['count'],
     'payment_pending' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE status = 'payment_pending'")['count'],
     'returned' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE status = 'returned'")['count'],

@@ -31,7 +31,7 @@ $params = [$member['id']];
 
 if ($status == 'overdue') {
     // Filter untuk yang terlambat (approved dan lewat due_date)
-    $where[] = "l.status = 'approved' AND l.due_date < CURDATE()";
+    $where[] = "l.status = 'approved' AND l.return_date IS NULL AND l.due_date < CURDATE()";
 } elseif ($status != 'all') {
     $where[] = "l.status = ?";
     $params[] = $status;
@@ -63,8 +63,8 @@ $loans = $db->fetchAll("
 // Get statistics
 $stats = [
     'pending' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE member_id = ? AND status = 'pending'", [$member['id']])['count'],
-    'approved' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE member_id = ? AND status = 'approved'", [$member['id']])['count'],
-    'overdue' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE member_id = ? AND status = 'approved' AND due_date < CURDATE()", [$member['id']])['count'],
+    'approved' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE member_id = ? AND status = 'approved' AND return_date IS NULL", [$member['id']])['count'],
+    'overdue' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE member_id = ? AND status = 'approved' AND return_date IS NULL AND due_date < CURDATE()", [$member['id']])['count'],
     'return_requested' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE member_id = ? AND status = 'return_requested'", [$member['id']])['count'],
     'payment_pending' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE member_id = ? AND status = 'payment_pending'", [$member['id']])['count'],
     'returned' => $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE member_id = ? AND status = 'returned'", [$member['id']])['count'],

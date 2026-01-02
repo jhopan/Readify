@@ -11,8 +11,8 @@ $db = new Database();
 // Get statistics
 $totalBooks = $db->fetchOne("SELECT COUNT(*) as count FROM books")['count'];
 $totalMembers = $db->fetchOne("SELECT COUNT(*) as count FROM members WHERE status = 'active'")['count'];
-$activeLoans = $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE status = 'active'")['count'];
-$overdueLoans = $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE status = 'active' AND due_date < CURDATE()")['count'];
+$activeLoans = $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE status = 'approved' AND return_date IS NULL")['count'];
+$overdueLoans = $db->fetchOne("SELECT COUNT(*) as count FROM loans WHERE status = 'approved' AND return_date IS NULL AND due_date < CURDATE()")['count'];
 
 // Get recent loans
 $recentLoans = $db->fetchAll("
@@ -139,12 +139,24 @@ include_once '../includes/sidebar.php';
                                     <td><?php echo htmlspecialchars($loan['member_name']); ?></td>
                                     <td><?php echo htmlspecialchars($loan['book_title']); ?></td>
                                     <td>
-                                        <?php if ($loan['status'] == 'active'): ?>
-                                            <span class="badge badge-warning">Dipinjam</span>
+                                        <?php if ($loan['status'] == 'pending'): ?>
+                                            <span class="badge badge-warning">Pending</span>
+                                        <?php elseif ($loan['status'] == 'approved'): ?>
+                                            <?php if ($loan['return_date']): ?>
+                                                <span class="badge badge-success">Dikembalikan</span>
+                                            <?php elseif ($loan['due_date'] < date('Y-m-d')): ?>
+                                                <span class="badge badge-danger">Terlambat</span>
+                                            <?php else: ?>
+                                                <span class="badge badge-info">Dipinjam</span>
+                                            <?php endif; ?>
                                         <?php elseif ($loan['status'] == 'returned'): ?>
                                             <span class="badge badge-success">Dikembalikan</span>
+                                        <?php elseif ($loan['status'] == 'rejected'): ?>
+                                            <span class="badge badge-danger">Ditolak</span>
+                                        <?php elseif ($loan['status'] == 'return_requested'): ?>
+                                            <span class="badge badge-warning">Ajuan Kembali</span>
                                         <?php else: ?>
-                                            <span class="badge badge-danger">Terlambat</span>
+                                            <span class="badge badge-secondary"><?php echo ucfirst($loan['status']); ?></span>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
