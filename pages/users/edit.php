@@ -6,8 +6,8 @@ requireAdmin(); // Only admin can access this page
 $pageTitle = 'Edit User';
 $db = new Database();
 
-// Get user ID
-$userId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// Get user ID from GET or POST
+$userId = isset($_GET['id']) ? (int)$_GET['id'] : (isset($_POST['user_id']) ? (int)$_POST['user_id'] : 0);
 
 // Get user data
 $user = $db->fetchOne("SELECT * FROM users WHERE id = ?", [$userId]);
@@ -119,7 +119,8 @@ include_once '../../includes/sidebar.php';
             </div>
         <?php endif; ?>
 
-        <form method="POST" action="">
+        <form method="POST" action="edit.php?id=<?php echo $userId; ?>">
+            <input type="hidden" name="user_id" value="<?php echo $userId; ?>">
             <div class="form-group">
                 <label class="form-label">Nama Lengkap <span style="color: red;">*</span></label>
                 <input type="text" name="name" class="form-control" placeholder="John Doe" 

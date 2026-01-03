@@ -1,6 +1,6 @@
 <?php
 $currentPage = basename($_SERVER['PHP_SELF'], '.php');
-$user = getCurrentUser();
+$currentUser = getCurrentUser();
 ?>
 
 <div class="sidebar">
@@ -68,10 +68,10 @@ $user = getCurrentUser();
 
     <div class="sidebar-user">
         <div class="user-info">
-            <div class="user-avatar"><?php echo strtoupper(substr($user['name'], 0, 1)); ?></div>
+            <div class="user-avatar"><?php echo strtoupper(substr($currentUser['name'], 0, 1)); ?></div>
             <div>
-                <div class="user-name"><?php echo htmlspecialchars($user['name']); ?></div>
-                <div class="user-role"><?php echo ucfirst($user['role']); ?></div>
+                <div class="user-name"><?php echo htmlspecialchars($currentUser['name']); ?></div>
+                <div class="user-role"><?php echo ucfirst($currentUser['role']); ?></div>
             </div>
         </div>
         <a href="<?php echo SITE_URL; ?>/pages/auth/logout.php" class="btn btn-danger btn-sm" style="width: 100%;">
