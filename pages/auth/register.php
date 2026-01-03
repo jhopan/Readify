@@ -55,14 +55,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         try {
             // Insert user dengan role member
-            $db->query("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, 'member')", 
-                [$name, $email, $hashedPassword]);
+            $db->query("INSERT INTO users (name, email, phone, password, role) VALUES (?, ?, ?, ?, 'member')", 
+                [$name, $email, $phone, $hashedPassword]);
             
             $userId = $db->lastInsertId();
             
-            // Generate member ID
-            $memberCount = $db->fetchOne("SELECT COUNT(*) as count FROM members")['count'];
-            $memberId = 'M' . str_pad($memberCount + 1, 3, '0', STR_PAD_LEFT);
+            // Generate member ID yang unik
+            $lastMember = $db->fetchOne("SELECT member_id FROM members ORDER BY id DESC LIMIT 1");
+            if ($lastMember) {
+                $lastNumber = (int)substr($lastMember['member_id'], 1);
+                $memberId = 'M' . str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
+            } else {
+                $memberId = 'M001';
+            }
             
             // Insert ke tabel members juga
             $db->query("INSERT INTO members (member_id, name, email, phone, join_date, status) VALUES (?, ?, ?, ?, CURDATE(), 'active')", 
