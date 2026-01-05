@@ -17,32 +17,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $loan = $db->fetchOne("SELECT * FROM loans WHERE id = ?", [$loanId]);
             
             if ($loan && $loan['status'] == 'pending') {
-                // Check book stock
-                $book = $db->fetchOne("SELECT * FROM books WHERE id = ?", [$loan['book_id']]);
+                // Approve loan (stok sudah dikurangi saat pengajuan)
+                $db->query("UPDATE loans SET status = 'approved', approved_by = ?, approved_date = NOW() WHERE id = ?", 
+                    [$user['id'], $loanId]);
                 
-                if ($book && $book['stock'] > 0) {
-                    // Approve loan
-                    $db->query("UPDATE loans SET status = 'approved', approved_by = ?, approved_date = NOW() WHERE id = ?", 
-                        [$user['id'], $loanId]);
-                    
-                    // Reduce stock
-                    $db->query("UPDATE books SET stock = stock - 1 WHERE id = ?", [$loan['book_id']]);
-                    
-                    setFlashMessage('success', 'Peminjaman berhasil disetujui.');
-                } else {
-                    setFlashMessage('error', 'Stok buku tidak tersedia.');
-                }
+                setFlashMessage('success', 'Peminjaman berhasil disetujui.');
             }
         } catch (Exception $e) {
             setFlashMessage('error', 'Gagal menyetujui peminjaman.');
         }
     } elseif ($action == 'reject' && $loanId) {
         try {
-            $reason = $_POST['reason'] ?? 'Tidak ada alasan';
-            $db->query("UPDATE loans SET status = 'rejected', approved_by = ?, approved_date = NOW(), notes = ? WHERE id = ?", 
-                [$user['id'], $reason, $loanId]);
+            // Get loan details untuk kembalikan stok
+            $loan = $db->fetchOne("SELECT * FROM loans WHERE id = ?", [$loanId]);
             
-            setFlashMessage('success', 'Peminjaman ditolak.');
+            if ($loan && $loan['status'] == 'pending') {
+                $reason = $_POST['reason'] ?? 'Tidak ada alasan';
+                $db->query("UPDATE loans SET status = 'rejected', approved_by = ?, approved_date = NOW(), notes = ? WHERE id = ?", 
+                    [$user['id'], $reason, $loanId]);
+                
+                // Kembalikan stok buku karena peminjaman ditolak
+                $db->query("UPDATE books SET stock = stock + 1 WHERE id = ?", [$loan['book_id']]);
+                
+                setFlashMessage('success', 'Peminjaman ditolak. Stok buku dikembalikan.');
+            }
         } catch (Exception $e) {
             setFlashMessage('error', 'Gagal menolak peminjaman.');
         }

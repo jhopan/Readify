@@ -40,8 +40,14 @@ if ($existingLoan) {
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
-        // Generate loan ID
-        $loanId = 'L' . str_pad($db->fetchOne("SELECT COUNT(*) as count FROM loans")['count'] + 1, 3, '0', STR_PAD_LEFT);
+        // Generate loan ID yang unik
+        $lastLoan = $db->fetchOne("SELECT loan_id FROM loans ORDER BY id DESC LIMIT 1");
+        if ($lastLoan) {
+            $lastNum = (int)substr($lastLoan['loan_id'], 1);
+            $loanId = 'L' . str_pad($lastNum + 1, 5, '0', STR_PAD_LEFT);
+        } else {
+            $loanId = 'L00001';
+        }
         
         // Calculate due date (DEFAULT_LOAN_DAYS from config)
         $loanDate = date('Y-m-d');
@@ -53,7 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             VALUES (?, ?, ?, ?, ?, 'pending')
         ", [$loanId, $member['id'], $bookId, $loanDate, $dueDate]);
         
-        // Note: Stock will be reduced only after staff approves
+        // Kurangi stok buku saat pengajuan (akan dikembalikan jika ditolak)
+        $db->query("UPDATE books SET stock = stock - 1 WHERE id = ?", [$bookId]);
         
         setFlashMessage('success', 'Pengajuan peminjaman berhasil dikirim! Menunggu persetujuan staff.');
         redirect('/pages/member/my-loans.php');
